@@ -1,13 +1,18 @@
 class PagesController < ApplicationController
   def index
-    if !user_session
-      redirect_to root_path
-    else
-    end
+    # if !user_session
+    #   redirect_to root_path
+    # else
+    # end
   end
 
   def home
-    @posts = Post.all
+    if user_signed_in?
+      @posts = Post.all
+      @newPost = Post.new
+    else
+      redirect_to root_path
+    end
   end
 
   def profile

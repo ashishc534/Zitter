@@ -12,15 +12,38 @@
 		</div>
 	</div>
 	<div class="col-xs-6">
+		<%= render '/components/post_form' %><br><br>
 		<% for @p in @posts %>
 	
-		<div class="panel panel-default">
-  			<div class="panel-body">
-				<p><%=@p.content %></p>
+		<div class="panel panel-default form-panel">
+  			<div class="panel-body row">
+  				<div class="col-sm-1">
+  					<img src="/profile.jpeg " class="round-image" height="50px" width="50px"></img>
+  				</div>
+  				<div class="col-sm-11">
+  					<p class="post-title"><span class="post-owner"><%=User.find(@p.user_id).username%></span><span class="post-creation"> - <%=@p.created_at.to_formatted_s(:short)%></span></p>
+					<p class="post-content"><%=@p.content %></p>
+				</div>
+
+				<div class="col-sm-12">
+					<p class="Post-Links">
+						<span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
+					</p>
+				</div>
 			</div>
 		</div>
 	<% end %>
 	
+		<div class="panel panel-default form-panel">
+	  			<div class="panel-body row">
+	  				<div class="col-sm-12">
+	  					<center><img src="/image.jpg" height="25px" width="25px"><br><a href="#top"><p style="opacity: 0.7">Back to Top <span class="glyphicon glyphicon-arrow-up"></span></p></a></center>
+	  				</div>
+	  			</div>		
+		</div>
 	</div>
 	<div class="col-xs-3">
 		<div class="panel panel-default">
@@ -29,6 +52,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 

@@ -16,7 +16,7 @@
 @import "bootstrap";
 
 body{
-	background-color: rgba(212, 216,212,0.25);
+	background-color: #e6ecf0;
 }
 .navbar{
 	background-color:white;
@@ -25,4 +25,34 @@ body{
 .navbar-brand{
 	position:absolute;
 	left:50%;
+}
+.form-panel{
+	margin-top:-21px;
+}
+.form-links{
+	text-align:left;
+}
+.post-title{
+	text-align:left;
+	margin-left:15px;
+}
+.post-content{
+	text-align:left;
+	margin-left:20px;
+    word-wrap: break-word;
+}
+.post-owner{
+	color:black;
+	font-weight:bold;
+}
+.post-creation{
+	opacity:0.70;
+}
+.g-links{
+	opacity:0.4;
+	font-size:120%;
+	margin-right:75px;
+}
+.round-image{
+	border-radius:50px;
 }

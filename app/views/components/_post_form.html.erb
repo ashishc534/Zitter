@@ -1,12 +1,42 @@
-<%= form_for (@newPost) do |f| %>
-  
-<center>
-  <div class="field">
-    <%= f.text_field :content, autofocus: true %>
+<div class="panel panel-default form-panel">
+  <div class="panel-body row">
+    <div class="col-sm-1">
+      <img src="/profile.jpeg " class="round-image" height="50px" width="50px"></img>
+    </div>
+    <div class="col-sm-11">
+      <%= form_for (@newPost) do |f| %>
+            <div class="field">
+              <%= f.text_field :content, autofocus: true,class:"form-control" %> 
+            </div>
+            <br>
+            <button type="submit" name="commit" id="submit_button"><span id="post">Post</span></button>
+            <span id="content_size">0 Characters..</span>
+      <% end %>   
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Add Post" %>
-  </div>
-</center>
-<% end %>
+<style>
+  #submit_button{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: #1da1f2;
+    color: white;
+    width: 60px;
+  }
+  .actions{
+    display: flex;
+    justify-content: space-between;
+  }
+  .field{
+    margin-left: 15px;
+  }
+  .new{
+    color:green;
+  }
+  #content_size{
+    padding-left: 2px;
+  }
+</style>
