@@ -7,13 +7,22 @@ class PagesController < ApplicationController
   end
 
   def home
-    if user_signed_in?
-      @posts = Post.all
-      @newPost = Post.new
-    else
-      redirect_to root_path
-    end
+    if user_signed_in? 
+     
+     if current_user.profile_picture
+        @posts = Post.all
+        @newPost = Post.new
+     else
+      current_user.profile_picture = 'default.jpg'
+        @posts = Post.all
+        @newPost = Post.new
+      end
+     
+     else 
+        redirect_to root_path
+     end
   end
+
 
   def profile
 
@@ -29,4 +38,22 @@ class PagesController < ApplicationController
   def explore
     @posts = Post.all
   end
+
+  def upload_image
+  end
+
+  def upload_image_submit
+    uploaded_file = params[:image]
+    filename = SecureRandom.hex + "." +uploaded_file.original_filename.split('.')[1]
+    filepath = Dir.pwd + "/public/uploads/" + filename
+    
+    File.open(filepath,'wb') do |file|
+      file.write(uploaded_file.read())
+  end
+
+  current_user.profile_picture = filename
+  current_user.save!
+     redirect_to home_path 
+  end
+
 end

@@ -1,0 +1,9 @@
+<div class="upload-image">
+    <%= form_tag url_for(controller: :pages, action: :upload_image_submit), multipart: true do %>
+    <%= file_field_tag :image %>
+    <br>
+    <%= submit_tag %>
+    <% end %>
+ </div>
+  
+  

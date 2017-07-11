@@ -31,7 +31,7 @@
           </form>
         </li>
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><img src="/profile.jpeg" height="25px" width="25px"></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><img style="border-radius: 5px;" src="/uploads/<%=current_user.profile_picture%>" height="25px" width="25px" ></a>
             
             <ul class="dropdown-menu">
               <li><a href="/user/<%=current_user.username%>">Profile</a></li>
@@ -41,6 +41,8 @@
               <li><%= link_to('Settings', edit_user_registration_path)%></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to('Log Out',destroy_user_session_path,:method => :delete)%></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to('Add Profile Photo',upload_image_path)%></li>
             </ul>
           </li>
           <li type="button" class="btn btn-primary navbar-btn">Add Post</li>  

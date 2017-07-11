@@ -4,14 +4,15 @@ $(document).ready(function(){
 	var submit_button = document.getElementById('submit_button');
 	
 	text_area.addEventListener('input',function(){
-	
-		char.innerHTML = text_area.value.length;
 		
-		if(text_area.value.length >140)
+		char.innerHTML = 140 - text_area.value.length + ' Characters left';
+		
+		
+		if(text_area.value.length > 140)
 		{
 		char.style.color = "red";
-		
 		submit_button.disabled = true;
+		char.innerHTML = 0;
 		}
 		else{
 		char.style.color = "black";
