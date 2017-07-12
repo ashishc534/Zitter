@@ -1,0 +1,23 @@
+#submit_button{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: #1da1f2;
+    color: white;
+    width: 60px;
+    outline: none;
+  }
+  .actions{
+    display: flex;
+    justify-content: space-between;
+  }
+  .field{
+    margin-left: 15px;
+  }
+  .new{
+    color:green;
+  }
+  #content_size{
+    padding-left: 2px;
+  }

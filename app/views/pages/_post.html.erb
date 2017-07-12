@@ -1,0 +1,22 @@
+<div class="panel panel-default form-panel" id="post-contents">
+  			<div class="panel-body row">
+  				<div class="col-sm-1">
+  					<img src="/uploads/<%= User.find_by_id(tweet.user_id).profile_picture %> " class="round-image" height="50px" width="50px">
+  					</img>
+  				</div>
+  				<div class="col-sm-11">
+  					<p class="post-title"><span class="post-owner"><%=User.find(tweet.user_id).username%></span><span class="post-creation"> - <%=time_ago_in_words(tweet.created_at)%> ago</span></p>
+					<p class="post-content"><%=tweet.content %></p>
+				</div>
+
+				<div class="col-sm-12">
+					<p class="Post-Links">
+						<span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
+						<span><%= link_to('View Comments', new_comment_path)%></span>
+					</p>
+				</div>
+			</div>
+		</div>

@@ -4,7 +4,7 @@
       <img src="/uploads/<%=current_user.profile_picture%>" class="round-image" height="35px" width="35px"></img>
     </div>
     <div class="col-sm-11">
-      <%= form_for (@newPost) , remote: true do |f| %>
+      <%= form_for (@post) , remote: true do |f| %>
             <div class="field">
               <%= f.text_field :content, autofocus: true,class:"form-control" %> 
             </div>

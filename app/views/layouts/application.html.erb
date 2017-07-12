@@ -8,6 +8,11 @@
 </head>
 <body>
 <%= render '/layouts/nav' %>
+
+<% if params[:id]!=nil %>
+	<% @url='/user/'+params[:id] %>
+		<img src="/bg2.jpg" class="profile-banner">
+<% end %>
 <div class="container">
 <span class="notice"><%= notice %></span>
 <span class="alert"><%= alert %></span>
@@ -17,3 +22,12 @@
 
 </body>
 </html>
+
+<style>
+	.profile-banner{
+		width: 100%;
+		height: 200px;
+		margin-top: -21px;
+		overflow: hidden;
+	}
+</style>

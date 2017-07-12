@@ -6,35 +6,45 @@ class PagesController < ApplicationController
     # end
   end
 
+  before_action :authenticate_user!  
   def home
-    if user_signed_in? 
-     
-     if current_user.profile_picture
-        @posts = Post.all
-        @newPost = Post.new
-     else
-      current_user.profile_picture = 'default.jpg'
-        @posts = Post.all
-        @newPost = Post.new
-      end
-     
-     else 
-        redirect_to root_path
-     end
+    respond_to do |format|
+    format.html{  
+        if current_user.profile_picture
+          @feed = Post.all
+          @post = Post.new
+        else
+          current_user.profile_picture = 'default.jpg'
+          @posts = Post.all
+          @post = Post.new
+        end
+      
+      }
+      format.js{
+        @feed = Post.all
+      }
+    end
   end
-
 
   def profile
-
-  	if (User.find_by_username(params[:id]))
-  		@username = params[:id]
-  	else
-  		redirect_to root_path, :notice=> "Oh_Crap!! User Not found"
-  	end
-    @posts = Post.all.where(user_id:User.find_by_username(params[:id]).id)
-    @newPost = Post.new
+    respond_to do |format|
+      
+      format.html{
+      	if (User.find_by_username(params[:id]))
+      		@post = Post.new
+          @username = params[:id]
+          @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
+          
+      	else
+      		redirect_to root_path, :notice=> "Oh_Crap!! User Not found"
+      	end
+        
+      }
+      format.js{
+        @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
+      }
   end
-
+end
   def explore
     @posts = Post.all
   end

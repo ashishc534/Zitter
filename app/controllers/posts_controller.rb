@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 		respond_to do |f|
 			if(@post.save)
 				f.html{ redirect_to ""}
+				f.js { }
 			else
 				f.html{ redirect_to "",notice:"Error: Post not Saved"}
 			end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :comments
+  get 'comments/delete'
+  get 'comments/show'
   devise_for :users
   resources :posts
   root 'pages#index'
@@ -44,8 +47,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

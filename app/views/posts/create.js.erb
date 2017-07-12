@@ -1,1 +1,4 @@
-$('#post-contents').append("<%= j render '/posts/post' %>")
+$('#tweets').prepend("<%= escape_javascript(render '/pages/post' ,tweet: @post) %>");
+$('#post_content').val("");
+$('#content_size').text("140 characters..");
+$('#tweets_count').text("<%=current_user.posts.length%>");

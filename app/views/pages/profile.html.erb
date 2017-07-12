@@ -1,11 +1,4 @@
 <div class="row">
-	<div class="col-xs-12">
-		<div class="jumbotron">
-			<%=@username %>
-		</div>
-	</div>
-</div>
-<div class="row">
 	<div class="col-xs-3">
 		<div class="panel panel-default">
   			<div class="panel-body">
@@ -13,17 +6,24 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-6">
-		<%= render '/components/post_form' %>
-		<% for @p in @posts %>
-	
-		<div class="panel panel-default">
-  			<div class="panel-body post-content" id="#post-content">
-				<p><%=@p.content %></p>
+	<div class="col-xs-6" style="margin-top: 20px;">
+		<% if User.find_by_username(params[:id]).username == current_user.username%>
+			<%= render 'posts/form' %>
+			<br>
+		<% end %>
+		<% @feed.each do |tweet| %>
+			<div id="tweets">
+			<%= render 'post', tweet: tweet %>
 			</div>
-		</div>
-	<% end %>
+		<% end %>
 	
+		<div class="panel panel-default form-panel">
+	  			<div class="panel-body row">
+	  				<div class="col-sm-12">
+	  					<center><img src="/image.jpg" height="25px" width="25px"><br><a href="#top"><p style="opacity: 0.7">Back to Top <span class="glyphicon glyphicon-arrow-up"></span></p></a></center>
+	  				</div>
+	  			</div>		
+		</div>
 	</div>
 	<div class="col-xs-3">
 		<div class="panel panel-default">
@@ -37,4 +37,6 @@
 			</div>
 		</div>
 	</div>
+
+		</div>
 </div>

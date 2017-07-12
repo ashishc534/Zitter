@@ -17,6 +17,7 @@
 
 body{
 	background-color: #e6ecf0;
+	min-width:1000px;
 }
 .navbar{
 	background-color:white;
@@ -55,4 +56,24 @@ body{
 }
 .round-image{
 	border-radius:50px;
+}
+.About a{
+		color: black;
+		opacity: 0.5;
+		font-size: 75%;
+		text-decoration: none;
+	}
+.About a:hover{
+	opacity: 0.9;
+}
+.profile-back{
+	width:261px;
+	height: 150px;
+}
+.profile{
+	width: 70px;
+	height: 70px;
+	padding: -5px;
+	border: 3px solid white;
+	border-radius: 10px;
 }

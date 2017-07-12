@@ -1,25 +1,19 @@
 <div class="row">
 	<div class="col-xs-3">
 		<div class="panel panel-default">
-				<img class="profile-back" src="/bg2.jpg"/>
-  			<div class="panel-body">
-  				<div class="image-bg"><img src="/uploads/<%= current_user.profile_picture %>" >
-				</div>
-  				
-  				<span class="online-user">
-  					<%=current_user.username%>
+			<div class="panel-body" id="profile">
+				<img src="/bg2.jpg" class="img-responsive">
+				<span><img src="/uploads/<%=current_user.profile_picture%>" class="profile profile_sketch">
+				<span class="post-owner"><%=current_user.username%></span>
 				</span>
-				
-  				<div class="count">
-	  				<div class="tweets-count">TWEETS</div>
-	  				<div class="followers-count">FOLLOWERS</div>
-  				</div>
-  				<div class="count">
-	  				<div class="tweets-count-val"><a href="#posts"><%=Post.where(user_id:current_user.id).count%></a></div>
-	  				<div class="followers-count-val"><a href="#">78</a></div>
-  				</div>
-			</div>
+				<div id="User_acts">
+				<a href="#" id="noOfposts">Posts</a>
+				<a href="#" id="noOffollowers">Followers</a>
+				<a href="#" id="noOffollowees">Following</a>
+				</div>
+			</div>		
 		</div>
+		
 		<div class="panel panel-default">
   			<div class="panel-body">
 				<p>Trends</p>
@@ -27,31 +21,12 @@
 		</div>
 	</div>
 	<div class="col-xs-6" style="margin-top: 20px;">
-		<%= render '/posts/post' %><br><br>
-		<% for @p in @posts %>
-	
-		<div class="panel panel-default form-panel" id="post-contents">
-  			<div class="panel-body row">
-  				<div class="col-sm-1">
-  					<img src="/uploads/<%= User.find_by_id(@p.user_id).profile_picture %> " class="round-image" height="50px" width="50px">
-  					</img>
-  				</div>
-  				<div class="col-sm-11">
-  					<p class="post-title"><span class="post-owner"><%=User.find(@p.user_id).username%></span><span class="post-creation"> - <%=time_ago_in_words(@p.created_at)%> ago</span></p>
-					<p class="post-content"><%=@p.content %></p>
-				</div>
-
-				<div class="col-sm-12">
-					<p class="Post-Links">
-						<span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
-					</p>
-				</div>
+		<%= render '/posts/form' %><br><br>
+		<% @feed.each do |tweet| %>
+			<div id="tweets">
+			<%= render 'post', tweet: tweet %>
 			</div>
-		</div>
-	<% end %>
+		<% end %>
 	
 		<div class="panel panel-default form-panel">
 	  			<div class="panel-body row">
@@ -88,66 +63,55 @@
 
 </div>
 
-
-
 <style>
-	.About a{
-		color: black;
-		opacity: 0.5;
-		font-size: 75%;
-		text-decoration: none;
+	#profile{
+		height: 300px;
+		margin: 0;
+		padding: 0;
 	}
-	.About a:hover{
-		opacity: 0.9;
-	}
-	.profile-back{
-		width:261px;
-		height: 150px;
-	}
-	.profile{
-		width: 70px;
-		height: 70px;
-		padding: -5px;
-		border: 3px solid white;
-		border-radius: 10px;
-	}
-	.image-bg img{
-		width: 70px;
-		height: 70px;
+	.profile_sketch{
+		width: 90px;
+		height: 90px;
 		margin-top: -40px;
-		margin-bottom: 20px;
-		border: 5px solid white;
-		border-radius: 5px;
+		margin-left: 10px;
 	}
-	.online-user{
-		position: absolute;
-		top: 160px;
-		left: 120px;
-		font-weight:bold;
-		font-size: 18px;
+	#profile span span{
+		font-size: 120%;
 	}
-	.count{
-		display: flex; 
-		opacity: 0.6;
-		font-size: 10px;
-	}
-	.followers-count{
-		margin-left: 40px;
-	}
-	.tweets-count-val{
-		margin-left: 5px;
-		font-size: 20px;
+	#noOfposts{
+		font-size: 110%;
 		font-weight: bold;
-	}
-	.tweets-count-val a{
 		text-decoration: none;
+		color: black;
 	}
-	.followers-count-val{
-		margin-left: 90px;
-		font-size: 20px;
+	#noOffollowers{
+		font-size: 110%;
 		font-weight: bold;
-	}
-	.followers-count-val a{
 		text-decoration: none;
+		color: black;
+	}
+	#noOffollowees{
+		font-size: 110%;
+		font-weight: bold;
+		text-decoration: none;
+		color: black;
+	}
+	#noOfposts:hover{
+		color: #1da1f2;
+		opacity: 1.0;
+	}
+	#noOffollowees:hover{
+		color: #1da1f2;
+		opacity: 1.0;
+	}
+	#noOffollowers:hover{
+		color: #1da1f2;
+		opacity: 1.0;
+	}
+	#User_acts{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-around;
+		opacity: 0.7;
 	}
 </style>
