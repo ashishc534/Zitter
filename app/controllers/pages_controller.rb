@@ -70,4 +70,7 @@ end
      redirect_to home_path 
   end
 
+  def search
+    byebug
+  end
 end

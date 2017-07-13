@@ -7,12 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if notice %>
+<script type="text/javascript">
+	noty({text: '<%= notice %>',type: 'success',
+    timeout: 2000});
+</script>
+
+<% end %>
+
+
+<% if alert %>
+
+<script type="text/javascript">
+	noty({text: '<%= alert %>', type: 'error' ,timeout: 2000});
+</script>
+<% end %>
+
 <%= render '/layouts/nav' %>
 
 <% if params[:id]!=nil %>
 	<% @url='/user/'+params[:id] %>
-		<img src="/bg2.jpg" class="profile-banner">
+	<img src="/bg2.jpg" class="profile-banner">
 <% end %>
+
 <div class="container">
 <span class="notice"><%= notice %></span>
 <span class="alert"><%= alert %></span>

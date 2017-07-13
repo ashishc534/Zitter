@@ -2,3 +2,5 @@ $('#tweets').prepend("<%= escape_javascript(render '/pages/post' ,tweet: @post) 
 $('#post_content').val("");
 $('#content_size').text("140 characters..");
 $('#tweets_count').text("<%=current_user.posts.length%>");
+noty({text: 'Tweet Was Successfully Created!',type: 'success',
+    timeout: 2000});

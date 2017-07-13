@@ -28,12 +28,13 @@
 	</div>
 	<div class="col-xs-6" style="margin-top: 20px;">
 		<%= render '/posts/form' %><br><br>
-		<% @feed.each do |tweet| %>
-			<div id="tweets">
-			<%= render 'post', tweet: tweet %>
-			</div>
-		<% end %>
-	
+		<% if current_user.posts.length > 0 %>
+			<%@feed.each do |tweet| %>
+				<div id="tweets">
+				<%= render 'post', tweet: tweet %>
+				</div>
+			<% end %>
+		
 		<div class="panel panel-default form-panel">
 	  			<div class="panel-body row">
 	  				<div class="col-sm-12">
@@ -41,6 +42,7 @@
 	  				</div>
 	  			</div>		
 		</div>
+		<% end %>
 	</div>
 	<div class="col-xs-3">
 		<div class="panel panel-default">

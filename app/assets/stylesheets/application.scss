@@ -12,9 +12,8 @@
  *
  */
 
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
-
 body{
 	background-color: #e6ecf0;
 	min-width:1000px;
@@ -22,9 +21,8 @@ body{
 .navbar{
 	background-color:white;
 }
- 
-.navbar-brand{
-	position:absolute;
+.brand-pos{
+	position: absolute;
 	left:50%;
 }
 .form-panel{
