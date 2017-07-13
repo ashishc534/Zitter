@@ -70,6 +70,24 @@ end
      redirect_to home_path 
   end
 
+  def upload_cover_image
+    
+  end
+
+  def upload_cover_image_submit
+    uploaded_file = params[:image]
+    filename = SecureRandom.hex + "." +uploaded_file.original_filename.split('.')[1]
+    filepath = Dir.pwd + "/public/uploads/" + filename
+    
+    File.open(filepath,'wb') do |file|
+      file.write(uploaded_file.read())
+  end
+
+  current_user.cover_image = filename
+  current_user.save!
+     redirect_to home_path
+  end
+
   def search
     byebug
   end

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/user/:id' => 'pages#profile'
   get '/explore' => 'pages#explore'
   get '/upload_image' => 'pages#upload_image'
+  get '/upload_cover_image' =>'pages#upload_cover_image'
   post '/upload_image_submit' => 'pages#upload_image_submit'
+  post '/upload_cover_image_submit' => 'pages#upload_cover_image_submit'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,5 @@
+    <%= form_tag url_for(controller: :pages, action: :upload_cover_image_submit), multipart: true do %>
+    <%= file_field_tag :image %>
+    <br>
+    <%= submit_tag %>
+    <% end %>
