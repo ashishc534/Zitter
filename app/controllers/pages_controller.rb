@@ -5,24 +5,28 @@ class PagesController < ApplicationController
     # else
     # end
   end
-
-  before_action :authenticate_user!  
+  
   def home
-    respond_to do |format|
-    format.html{  
-        if current_user.profile_picture
+
+    if user_signed_in?
+      respond_to do |format|
+        format.html{  
+          if current_user.profile_picture
+            @feed = Post.all
+            @post = Post.new
+          else
+            current_user.profile_picture = 'default.jpg'
+            @posts = Post.all
+            @post = Post.new
+          end
+        
+        }
+        format.js{
           @feed = Post.all
-          @post = Post.new
-        else
-          current_user.profile_picture = 'default.jpg'
-          @posts = Post.all
-          @post = Post.new
-        end
-      
-      }
-      format.js{
-        @feed = Post.all
-      }
+        }
+      end
+    else
+      redirect_to '/'
     end
   end
 

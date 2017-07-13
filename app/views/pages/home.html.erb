@@ -7,9 +7,15 @@
 				<span class="post-owner"><%=current_user.username%></span>
 				</span>
 				<div id="User_acts">
-				<a href="#" id="noOfposts">Posts</a>
-				<a href="#" id="noOffollowers">Followers</a>
-				<a href="#" id="noOffollowees">Following</a>
+				<a href="#" id="noOfposts">Posts
+					<div id="User_acts_count"><span id="tweets_count"><%=current_user.posts.length%></span></div></a>
+
+				<a href="#" id="noOffollowers">Followers
+				<div id="User_acts_count">13</div>
+				</a>
+				
+				<a href="#" id="noOffollowees">Following
+				<div id="User_acts_count">14</div></a>
 				</div>
 			</div>		
 		</div>
@@ -110,6 +116,13 @@
 	}
 	#User_acts{
 		margin-top: 10px;
+		display: flex;
+		justify-content: space-around;
+		opacity: 0.7;
+	}
+	#User_acts_count{
+		margin-top: 5px;
+		margin-left: -14px;
 		display: flex;
 		justify-content: space-around;
 		opacity: 0.7;

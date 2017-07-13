@@ -1,16 +1,48 @@
-<h2>Forgot your password?</h2>
+<div class="fade">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading height"><b class="col-md-offset-3" style="font-size: 20px;">&nbsp;Forgot Your Password?</b></div>
+        <div class="panel-body">
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+ 			<%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+			 <div class="field form-group">
+			    <%= f.label :email %><br />
+			    <%= f.email_field :email, autofocus: true ,:class => 'form-control'%>
+			 </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+			 <div class="actions form-group">
+			    <%= f.submit "Send me reset password instructions" ,:class => 'btn btn-primary btn-block'%>
+			 </div>
+			<% end %>
+			</div>
+      <div class="panel-footer">
+      <%= render "devise/shared/links"%>
+      </div>
+      
+    </div>
   </div>
+</div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<style>
+	.height{
+    height: 50px;
+  }
+  .fade{
+    animation:fadein 1s;
+  animation-timing-function:linear;
+  animation-delay:0.1s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: 1;
+  }
+  @keyframes fadein{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+</style>
