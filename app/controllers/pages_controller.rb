@@ -19,6 +19,7 @@ class PagesController < ApplicationController
             @feed = Post.all
             @post = Post.new
           end
+          @whotofollow = User.first(10)
         current_user.save!
         }
         format.js{
@@ -37,6 +38,7 @@ class PagesController < ApplicationController
       	if (User.find_by_username(params[:id]))
       		@username = params[:id]
           @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
+          @whotofollow = User.first(10)
           
       	else
       		redirect_to root_path, :notice=> "Oh_Crap!! User Not found"
@@ -49,7 +51,8 @@ class PagesController < ApplicationController
   end
 end
   def explore
-    @posts = Post.all
+    @feed = Post.all
+    @users = User.all.where("id!=?",current_user.id)
   end
 
   def upload_image

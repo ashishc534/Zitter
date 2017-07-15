@@ -14,10 +14,10 @@
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/home">Moments</a></li>
-        <li><a href="/home">Notifications</a></li>
-        <li><a href="/home">Messages</a></li>
+        <li><a href="/home"><span class="glyphicon glyphicon-home"></span><span class="nav-menu">Home</span></a></li>
+        <li><a href="/explore"><span class="glyphicon glyphicon-flash"></span><span class="nav-menu">Explore</span></a></li>
+        <li><a href="#2"><span class="glyphicon glyphicon-bell"></span><span class="nav-menu">Notifications</span></a></li>
+        <li><a href="#3"><span class="glyphicon glyphicon-envelope"></span><span class="nav-menu">Messages</span></a></li>
       
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -50,3 +50,16 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<script>
+  $(".navbar [href]").each(function() {
+    if (this.href == window.location.href) {
+            $(this).addClass("active");
+    }
+});
+</script>
+
+<style>
+  .active span{
+    color: #1da1f2;
+  }
+</style>
