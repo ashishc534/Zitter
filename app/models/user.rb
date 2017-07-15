@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
+  has_many :comments
   validates_length_of :username , :maximum=>15 ,:message=>"Username Should be less than %d characters."	
 
 end

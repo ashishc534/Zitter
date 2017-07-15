@@ -1,28 +1,8 @@
 <div class="row">
-	<div class="col-xs-3">
-		<div class="panel-body" id="profile">
-				<img src="/bg2.jpg" class="img-responsive">
-				<span><img src="/uploads/<%=User.find_by_username(params[:id]).profile_picture%>" class="profile profile_sketch">
-				<span class="post-owner"><%=User.find_by_username(params[:id]).username%></span>
-				</span>
-				<div id="User_acts">
-				<a href="#" id="noOfposts">Posts
-					<div id="User_acts_count"><span id="tweets_count"><%=User.find_by_username(params[:id]).posts.count%></span></div></a>
-
-				<a href="#" id="noOffollowers">Followers
-				<div id="User_acts_count">13</div>
-				</a>
-				
-				<a href="#" id="noOffollowees">Following
-				<div id="User_acts_count">14</div></a>
-				</div>
-			</div>
+	<div class="col-md-3">
+		<img src="/uploads/<%=current_user.profile_picture%>" class="profileAvatar-image">
 	</div>
 	<div class="col-xs-6" style="margin-top: 20px;">
-		<% if User.find_by_username(params[:id]).username == current_user.username%>
-			<%= render 'posts/form' %>
-			<br>
-		<% end %>
 		<% @feed.each do |tweet| %>
 			<div id="tweets">
 			<%= render 'post', tweet: tweet %>
@@ -37,77 +17,18 @@
 	  			</div>		
 		</div>
 	</div>
-	<div class="col-xs-3">
-		<div class="panel panel-default">
-  			<div class="panel-body">
-				<p>Who To Follow</p>
-			</div>
-		</div>
-		<div class="panel panel-default">
-  			<div class="panel-body">
-				<p>Trends</p>
-			</div>
-		</div>
+	<div class="col-md-3">
+		a
 	</div>
-
-		</div>
 </div>
+
 <style>
-	#profile{
-		height: 300px;
-		margin: 0;
-		padding: 0;
-	}
-	.profile_sketch{
-		width: 90px;
-		height: 90px;
-		margin-top: -40px;
-		margin-left: 10px;
-	}
-	#profile span span{
-		font-size: 120%;
-	}
-	#noOfposts{
-		font-size: 110%;
-		font-weight: bold;
-		text-decoration: none;
-		color: black;
-	}
-	#noOffollowers{
-		font-size: 110%;
-		font-weight: bold;
-		text-decoration: none;
-		color: black;
-	}
-	#noOffollowees{
-		font-size: 110%;
-		font-weight: bold;
-		text-decoration: none;
-		color: black;
-	}
-	#noOfposts:hover{
-		color: #1da1f2;
-		opacity: 1.0;
-	}
-	#noOffollowees:hover{
-		color: #1da1f2;
-		opacity: 1.0;
-	}
-	#noOffollowers:hover{
-		color: #1da1f2;
-		opacity: 1.0;
-	}
-	#User_acts{
-		margin-top: 10px;
-		display: flex;
-		justify-content: space-around;
-		opacity: 0.7;
-	}
-	#User_acts_count{
-		margin-top: 5px;
-		margin-left: -14px;
-		display: flex;
-		justify-content: space-around;
-		opacity: 0.7;
+	.profileAvatar-image{
+		border-radius: 50%;
+		height: 200px;
+		width: 200px;
+		border:5px solid white;
+		position: relative;
+		top: -200px;
 	}
 </style>

@@ -1,14 +1,13 @@
 <div class="row">
 	<div class="col-xs-3">
-		<div class="panel panel-default">
-			<div class="panel-body" id="profile">
+		<div class="panel-body" id="profile">
 				<img src="/bg2.jpg" class="img-responsive">
-				<span><img src="/uploads/<%=current_user.profile_picture%>" class="profile profile_sketch" >
-				<span class="post-owner"><%=current_user.username%></span>
+				<span><img src="/uploads/<%=User.find_by_username(params[:id]).profile_picture%>" class="profile profile_sketch">
+				<span class="post-owner"><%=User.find_by_username(params[:id]).username%></span>
 				</span>
 				<div id="User_acts">
 				<a href="#" id="noOfposts">Posts
-					<div id="User_acts_count"><span id="tweets_count" style="margin-top: 0px;"><%=current_user.posts.length%></span></div></a>
+					<div id="User_acts_count"><span id="tweets_count"><%=User.find_by_username(params[:id]).posts.count%></span></div></a>
 
 				<a href="#" id="noOffollowers">Followers
 				<div id="User_acts_count">13</div>
@@ -17,23 +16,19 @@
 				<a href="#" id="noOffollowees">Following
 				<div id="User_acts_count">14</div></a>
 				</div>
-			</div>		
-		</div>
-		
-		<div class="panel panel-default">
-  			<div class="panel-body">
-				<p>Trends</p>
 			</div>
-		</div>
 	</div>
 	<div class="col-xs-6" style="margin-top: 20px;">
-		<%= render '/posts/form' %><br><br>
-			<%@feed.each do |tweet| %>
-				<div id="tweets">
-				<%= render 'post', tweet: tweet %>
-				</div>
-			<% end %>
-		
+		<% if User.find_by_username(params[:id]).username == current_user.username%>
+			<%= render 'posts/form' %>
+			<br>
+		<% end %>
+		<% @feed.each do |tweet| %>
+			<div id="tweets">
+			<%= render 'post', tweet: tweet %>
+			</div>
+		<% end %>
+	
 		<div class="panel panel-default form-panel">
 	  			<div class="panel-body row">
 	  				<div class="col-sm-12">
@@ -41,35 +36,22 @@
 	  				</div>
 	  			</div>		
 		</div>
-		
 	</div>
 	<div class="col-xs-3">
 		<div class="panel panel-default">
   			<div class="panel-body">
-				<p class="About"> <a href=#>@ 2017 Zitter</a>
-					<a href=#>About</a>
-					<a href=#>Help</a>
-					<a href=#>Terms</a>
-					<a href=#>Privacy</a>
-					<a href=#>Cookies</a>
-					<a href=#>Ads</a>
-					<a href=#>Info</a>
-					<a href=#>Brand</a>
-					<a href=#>Blog</a>
-					<a href=#>Status</a>
-					<a href=#>Ads</a>
-					<a href=#>Jobs</a>
-					<a href=#>Advertise</a>
-					<a href=#>Businesses</a>
-					<a href=#>Media</a>
-					<a href=#>Developers</a>
-				</p>
+				<p>Who To Follow</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+  			<div class="panel-body">
+				<p>Trends</p>
 			</div>
 		</div>
 	</div>
 
+		</div>
 </div>
-
 <style>
 	#profile{
 		height: 300px;
@@ -122,7 +104,7 @@
 		opacity: 0.7;
 	}
 	#User_acts_count{
-		margin-top: 4px;
+		margin-top: 5px;
 		margin-left: -14px;
 		display: flex;
 		justify-content: space-around;

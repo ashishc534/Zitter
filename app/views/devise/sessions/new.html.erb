@@ -7,12 +7,12 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field form-group ">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true , :class => 'form-control'%>
+          <%= f.email_field :email, autofocus: true , :class => 'form-control' ,:placeholder => 'Enter your email'%>
         </div>
 
         <div class="field form-group ">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' ,:placeholder => 'Enter your password'%>
         </div>
 
         <% if devise_mapping.rememberable? -%>
@@ -49,10 +49,20 @@
   }
   @keyframes fadein{
     from{
-      opacity: 0;
+      opacity: 0.3;
     }
     to{
       opacity: 1;
     }
+  }
+
+  body{
+    background:linear-gradient(rgba(0,0,0,0.7),
+      rgba(0,0,0,0.7)),url('/bg5.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      overflow: hidden;
   }
 </style>

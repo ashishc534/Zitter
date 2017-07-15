@@ -15,11 +15,11 @@ class PagesController < ApplicationController
             @feed = Post.all
             @post = Post.new
           else
-            current_user.profile_picture = 'default.jpg'
-            @posts = Post.all
+            current_user.profile_picture = '/default.jpg'
+            @feed = Post.all
             @post = Post.new
           end
-        
+        current_user.save!
         }
         format.js{
           @feed = Post.all
@@ -35,8 +35,7 @@ class PagesController < ApplicationController
       
       format.html{
       	if (User.find_by_username(params[:id]))
-      		@post = Post.new
-          @username = params[:id]
+      		@username = params[:id]
           @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
           
       	else

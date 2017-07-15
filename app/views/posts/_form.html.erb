@@ -6,7 +6,7 @@
     <div class="col-sm-11">
       <%= form_for (@post) , remote: true do |f| %>
             <div class="field">
-              <%= f.text_field :content, autofocus: true,class:"form-control" %> 
+              <%= f.text_field :content, autofocus: true,:class => 'form-control'%> 
             </div>
             <br>
             <button type="submit" name="commit" id="submit_button"><span id="post">Post</span></button>
@@ -16,6 +16,10 @@
   </div>
 </div>
 
+<script>
+    $('#post_content.form-control').attr("placeholder","Share Someting <%=current_user.username.split(' ')[0]%>..");
+
+</script>
 <style>
   #submit_button{
     margin-bottom: 0px;
