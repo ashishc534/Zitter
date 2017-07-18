@@ -21,15 +21,8 @@
       
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-            <form class="navbar-form navbar-right" role="Search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search Zitter">
-              </div>
-          </form>
-        </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><img style="border-radius: 5px;" src="/uploads/<%=current_user.profile_picture%>" height="25px" width="25px" ></a>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><img class="nav-image" src="/uploads/<%=current_user.profile_picture%>" height="25px" width="25px" ></a>
             
             <ul class="dropdown-menu">
               <li><a href="/user/<%=current_user.username%>">Profile</a></li>
@@ -38,14 +31,20 @@
               <li role="separator" class="divider"></li>
               <li><%= link_to('Settings', edit_user_registration_path)%></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to('Log Out',destroy_user_session_path,:method => :delete)%></li>
-              <li role="separator" class="divider"></li>
               <li><%= link_to('Add Profile Photo',upload_image_path)%></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to('Add Cover Photo',upload_cover_image_path)%></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to('Log Out',destroy_user_session_path,:method => :delete)%></li>
             </ul>
           </li>
-          <li type="button" class="btn btn-primary navbar-btn">Add Post</li>  
+        <li>
+            <form class="navbar-form navbar-right searchbar" role="Search" id="submitform" action="/user/profile">
+              <div class="form-group">
+               <input type="text" class="form-control" name="search" placeholder="Search Users.."> <input type="submit" name="Search" class="btn btn-info navbar-btn">
+              </div>
+          </form>
+        </li>  
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -56,10 +55,23 @@
             $(this).addClass("active");
     }
 });
+  
+
 </script>
 
 <style>
   .active span{
     color: #1da1f2;
+  }
+  .dropdown-menu li a:hover{
+    color: #1da1f2;
+  }
+  .nav-image{
+    margin-top: 4px;
+    border:1px solid #1da1f2;
+    border-radius: 5px;
+  }
+  .searchbar{
+    margin-left: -20px;
   }
 </style>

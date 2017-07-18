@@ -11,11 +11,11 @@
 					<div id="User_acts_count"><span id="tweets_count" style="margin-top: 0px;"><%=current_user.posts.length%></span></div></a>
 
 				<a href="#" id="noOffollowers">Followers
-				<div id="User_acts_count">13</div>
+				<div id="User_acts_count"><%=Relationship.where(followee_id:current_user.id).count %></div>
 				</a>
 				
 				<a href="#" id="noOffollowees">Following
-				<div id="User_acts_count">14</div></a>
+				<div id="User_acts_count"><%= Relationship.where(follower_id:current_user.id).count %></div></a>
 				</div>
 			</div>		
 		</div>

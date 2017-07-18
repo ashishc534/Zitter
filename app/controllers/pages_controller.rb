@@ -33,7 +33,11 @@ class PagesController < ApplicationController
 
   def profile
     respond_to do |format|
-      
+
+      if(params[:search])
+        params[:id] = params[:search]
+      end
+
       format.html{
       	if (User.find_by_username(params[:id]))
       		@username = params[:id]
@@ -43,13 +47,14 @@ class PagesController < ApplicationController
       	else
       		redirect_to root_path, :notice=> "Oh_Crap!! User Not found"
       	end
-        
       }
       format.js{
         @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
+        @feed = Post.all.where(user_id:User.find_by_username(params[:search]).id)
       }
   end
 end
+  
   def explore
     @feed = Post.all
     @users = User.all.where("id!=?",current_user.id)
@@ -90,7 +95,19 @@ end
      redirect_to home_path
   end
 
-  def search
-    byebug
+  def relation
+    followee_id = params[:followee_id]
+    follow = Relationship.where(followee_id: followee_id , follower_id: current_user.id).first
+
+    unless follow 
+      follow = Relationship.new
+      follow.followee_id = followee_id
+      follow.follower_id = current_user.id
+      follow.save
+    else
+      follow.destroy
+    end
+    redirect_to request.referrer
   end
+
 end

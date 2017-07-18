@@ -27,7 +27,7 @@
 
 <% if params[:id]!=nil %>
 	<% @url='/user/'+params[:id] %>
-	<div style="display: flex; width: 100%; height: 250px; overflow: hi"><div class="profile-banner"></div>
+	<div style="display: flex; width: 100%; height: 250px;"><div class="profile-banner"></div>
 	</div>
 	<div class="profile-banner-bottom">
 		<div class="wrapper">
@@ -36,18 +36,34 @@
 					<div class="user_data" style="margin-left: 0px;"><%=User.find_by_username(params[:id]).posts.count%></div>
 				</a>
 				<a href="#1">Following
-					<div class="user_data">2000</div>
+					<div class="user_data"><%=Relationship.where(follower_id:User.find_by_username(params[:id]).id).count%></div>
 				</a>
 				<a href="#2">Followers
-					<div class="user_data">2000</div>
+					<div class="user_data"><%=Relationship.where(followee_id:User.find_by_username(params[:id]).id).count%></div>
 				</a>
 				<a href="#3">Likes
 					<div class="user_data">20</div>
 				</a>
 			</div>
-			<button class="edit">
-				<a href="/users/edit"><b style="opacity: 0.7">Edit Profile</b></a>
-			</button>
+			<% if params[:id]==current_user.username %>
+				<button class="edit">
+					<a href="/users/edit"><b style="opacity: 0.7">Edit Profile</b></a>
+				</button>
+			<% else %>
+
+				<form action="pages/relation" method="POST">
+				<input type="hidden" name="followee_id" value="<%=User.find_by_username(params[:id]).id %>"/>
+	            	<% if Relationship.where(follower_id: current_user.id , followee_id: User.find_by_username(params[:id]).id).count>0 %>
+						<button class="edit">
+							<b style="opacity: 0.7">UnFollow</b>
+						</button>
+					<% else %>
+						<button class="edit">
+							<b style="opacity: 0.7">Follow</b>
+						</button>
+					<% end %>
+				</form>
+			<% end %>
 		</div>
 	</div>
 <% end %>
@@ -126,6 +142,7 @@ $(".links [href]").each(function() {
 	.edit:hover{
 		background-color:rgba(29,161,242,0.1); 
 	}
+
 	.edit a{
 		text-decoration: none;
 	}

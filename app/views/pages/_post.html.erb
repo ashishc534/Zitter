@@ -5,7 +5,7 @@
   					</img>
   				</div>
   				<div class="col-sm-11">
-  					<p class="post-title"><span class="post-owner"><%=User.find(tweet.user_id).username%></span><span class="post-creation"> - <%=time_ago_in_words(tweet.created_at)%> ago</span></p>
+  					<p class="post-title"><span class="post-owner"><a href="/user/<%=User.find(tweet.user_id).username%>"><%=User.find(tweet.user_id).username%></a></span><span class="post-creation"> - <%=time_ago_in_words(tweet.created_at)%> ago</span></p>
 					<p class="post-content"><%=tweet.content %></p>
 				</div>
 

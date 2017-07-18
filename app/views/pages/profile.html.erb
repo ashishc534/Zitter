@@ -2,6 +2,7 @@
 	<div class="col-md-3">
 		<img src="/uploads/<%=User.find_by_username(@username).profile_picture%>" class="profileAvatar-image">
 	</div>
+
 	<div class="col-xs-6" style="margin-top: 20px;">
 		<% @feed.each do |tweet| %>
 			<div id="tweets">
@@ -20,21 +21,21 @@
 	<div class="col-md-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<b>WHO TO FOLLOW</b>
+				<center><b>WHO TO FOLLOW</b></center>
 			</div>
 			<div class="panel-body">
-			<%@whotofollow.each do|users|%>
-				<div class="row">
-					<% if users.Can_follow users.id,current_user.id %>
-					<div class="col-md-4">
-						<img src="/uploads/<%=users.profile_picture%>" class="round-image" style="height: 50px; width: 50px;">
-					</div>
-					<div class="col-md-8 whotofollow">
-						<a href="/user/<%=users.username%>"><%=users.username%></a>
+				<%@whotofollow.each do|users|%>
+					<div class="row">
+						<% if users.Can_follow users.id,current_user.id %>
+						<div class="col-md-4">
+							<img src="/uploads/<%=users.profile_picture%>" class="round-image" style="height: 50px; width: 50px;">
+						</div>
+						<div class="col-md-8 whotofollow">
+							<a href="/user/<%=users.username%>"><%=users.username%></a>
+						</div>
+						<% end %>
 					</div>
 					<% end %>
-				</div>
-				<% end %>
 			</div>
 		</div>
 	</div>

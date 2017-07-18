@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :posts
+  resources :relationships
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   root 'pages#index'
 
   get '/home' => 'pages#home'
-
+  get '/search' => 'posts#search'
+  post 'user/pages/relation' => 'pages#relation'
   get '/user/:id' => 'pages#profile'
+  get '/user/:search' => 'pages#profile'
   get '/explore' => 'pages#explore'
   get '/upload_image' => 'pages#upload_image'
   get '/upload_cover_image' =>'pages#upload_cover_image'
