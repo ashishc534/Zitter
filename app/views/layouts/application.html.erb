@@ -27,19 +27,25 @@
 
 <% if params[:id]!=nil %>
 	<% @url='/user/'+params[:id] %>
-	<div style="display: flex; width: 100%; height: 250px;"><div class="profile-banner"></div>
+	<div style="display: flex; width: 100%; height: 250px;">
+		<div class="profile-banner">
+		</div>
 	</div>
+	<div class="user-avatar">
+	<img class="round" src="/uploads/<%=User.find_by_username(@username).profile_picture%>">
+</div>
+
 	<div class="profile-banner-bottom">
 		<div class="wrapper">
 			<div class="links">
 				<a href="/user/<%=params[:id]%>">Tweets
 					<div class="user_data" style="margin-left: 0px;"><%=User.find_by_username(params[:id]).posts.count%></div>
 				</a>
-				<a href="#1">Following
-					<div class="user_data"><%=Relationship.where(follower_id:User.find_by_username(params[:id]).id).count%></div>
+				<a href="/user/<%=params[:id]%>/following">Following
+					<div class="user_data"><%=User.find_by_username(params[:id]).active_relationships.count%></div>
 				</a>
-				<a href="#2">Followers
-					<div class="user_data"><%=Relationship.where(followee_id:User.find_by_username(params[:id]).id).count%></div>
+				<a href="/user/<%=params[:id]%>/followers">Followers
+					<div class="user_data"><%=User.find_by_username(params[:id]).passive_relationships.count%></div>
 				</a>
 				<a href="#3">Likes
 					<div class="user_data">20</div>
@@ -138,6 +144,7 @@ $(".links [href]").each(function() {
 		width: 110px;
 		height: 40px;
 		background-color: #fff;
+		outline: none;
 	}
 	.edit:hover{
 		background-color:rgba(29,161,242,0.1); 

@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def delete
+		id = params[:id]
+		byebug
+	end
 	private
 	def post_params #allows certain data to be passed via form.. (Strong Parameters)
 		params.require(:post).permit(:user_id,:content)

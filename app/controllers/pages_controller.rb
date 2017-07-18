@@ -56,7 +56,7 @@ class PagesController < ApplicationController
 end
   
   def explore
-    @feed = Post.all
+    @feed = Post.all.order(created_at: :desc)
     @users = User.all.where("id!=?",current_user.id)
   end
 
@@ -110,4 +110,35 @@ end
     redirect_to request.referrer
   end
 
+  def followers
+
+    respond_to do|format|
+      format.html{
+            # @feed = []
+            # followee_id = User.find_by_username(params[:id]).passive_relationships.pluck(:follower_id)
+            # followee_id.each do|followee_id|
+            #   @feed <<  Post.find_by(user_id:followee_id)
+            # end
+            # @feed.sort!{|a,b| b.created_at <=> a.created_at}
+            # @username = params[:id]
+          }
+      end
+  end
+
+  def following
+   respond_to do|format|
+      format.html{
+
+        @followers = User.find_by_username(params[:id]).active_relationships.pluck(:followee_id)
+        @username = params[:id]
+            # @feed = []
+            # follower_id = User.find_by_username(params[:id]).active_relationships.pluck(:followee_id)
+            # follower_id.each do|follower_id|
+            #   @feed <<  Post.order(created_at: :desc).find_by(user_id:follower_id)
+            # end
+            # @feed.sort!{|a,b| b.created_at <=> a.created_at}
+            # @username = params[:id]
+        }
+      end
+    end
 end

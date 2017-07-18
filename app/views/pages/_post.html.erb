@@ -10,13 +10,34 @@
 				</div>
 
 				<div class="col-sm-12">
-					<p class="Post-Links">
-						<span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true"></span>
-						<span><%= link_to 'View Comments'%></span>
+					<ul class="post-links">
+						<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
+						<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
+						<li><span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span></li>
+						<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true">
+						</span></a>
+						<ul class="dropdown-menu">
+							<% if tweet.user_id == current_user.id%>
+			              		<li></li>
+			              	<% else %>
+			              		<li>Hide</li>
+			              	<% end %>
+			            </ul>
+			            </li>
+
+						<li><%= link_to 'View Comments'%></li>
+						</ul>
 					</p>
 				</div>
 			</div>
 		</div>
+
+<style>
+	.post-links{
+		display: flex;
+	}
+	.post-links li{
+		list-style: none;
+	}
+</style>
