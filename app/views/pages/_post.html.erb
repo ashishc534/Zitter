@@ -19,14 +19,14 @@
 						</span></a>
 						<ul class="dropdown-menu">
 							<% if tweet.user_id == current_user.id%>
-			              		<li></li>
+			              		<li>Delete</li>
 			              	<% else %>
 			              		<li>Hide</li>
 			              	<% end %>
 			            </ul>
 			            </li>
 
-						<li><%= link_to 'View Comments'%></li>
+						<li><%= link_to 'Comments'%></li>
 						</ul>
 					</p>
 				</div>
@@ -39,5 +39,11 @@
 	}
 	.post-links li{
 		list-style: none;
+	}
+	.form-panel{
+		box-shadow: 0px 1px lightgrey;
+	}
+	.round-image{
+		border:1px solid #1da1f2;
 	}
 </style>

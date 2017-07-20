@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+			<div class="panel-heading">
+				<center><b>WHO TO FOLLOW</b></center>
+			</div>
+			<div class="panel-body">
+				<%whotofollow.each do|users|%>
+					<div class="row">
+						<% if users.Can_follow users.id,current_user.id %>
+							<% if !users.already_following users.id,current_user.id%>
+								<div class="col-md-3">
+									<img src="/uploads/<%=users.profile_picture%>" class="round-image wtfimage">
+								</div>
+								<div class="col-md-9 whotofollow">
+									<div class="panel">
+										<div class="panel-body">
+										<a href="/user/<%=users.username%>"><%=users.username%></a>
+										<form action="/user/pages/relation" method="POST">
+										<input type="hidden" name="followee_id" value="<%=users.id%>"/>
+		            					<button class="relation wtfrelation">
+											<span class="relation-text">Follow</span>
+										</button>
+							</form>
+										</div>
+									</div>
+								</div>
+							<% end %>
+						<% end %>
+				</div>
+		<% end %>
+	</div>
+</div>

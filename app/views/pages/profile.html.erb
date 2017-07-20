@@ -19,26 +19,22 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<center><b>WHO TO FOLLOW</b></center>
-			</div>
-			<div class="panel-body">
-				<%@whotofollow.each do|users|%>
-					<div class="row">
-						<% if users.Can_follow users.id,current_user.id %>
-							<% if !users.already_following users.id,current_user.id%>
-								<div class="col-md-4">
-									<img src="/uploads/<%=users.profile_picture%>" class="round-image" style="height: 50px; width: 50px;">
-								</div>
-								<div class="col-md-8 whotofollow">
-									<a href="/user/<%=users.username%>"><%=users.username%></a>
-								</div>
-							<% end %>
-						<% end %>
-					</div>
-					<% end %>
-			</div>
-		</div>
+		<%=render 'pages/whotofollow' , whotofollow:@whotofollow%>
 	</div>
 </div>
+
+<style type="text/css">
+	.whotofollow{
+		margin-top: -10px;
+	}
+	.wtfrelation{
+		right:0px;
+		outline: none;
+	}
+	.wtfimage{
+		height: 50px;
+		width: 50px;
+		border:1px solid #1da1f2;
+		margin-top: 10px;
+	}
+</style>

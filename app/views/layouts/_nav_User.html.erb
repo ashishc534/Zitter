@@ -41,7 +41,7 @@
         <li>
             <form class="navbar-form navbar-search navbar-right searchbar" role="Search" id="submitform" action="/user/profile">
               <div class="form-group">
-               <input type="text" class="search-query form-control" name="search" placeholder="Search Users.."> <input type="submit" name="Search" class="btn btn-info navbar-btn">
+               <input type="text" class="search-query form-control" name="search" placeholder="Search Users.."> <button class="search-button"><span class="search-text">Search</span></button>
               </div>
           </form>
         </li>  
@@ -73,5 +73,23 @@
   }
   .searchbar{
     margin-left: -20px;
+  }
+  .search-button{
+    margin-top: 7px;
+    margin-left: 5px;
+    background-color: #1da1f2;
+    width: 80px;
+    height: 30px;
+    border:1px solid #1da1f2;
+    border-radius: 30px;
+  }
+  .search-text{
+    color:white;
+  }
+  .search-button:hover{
+    border:1px solid white;
+  }
+  .search-button:hover .search-text{
+    font-weight:bolder;
   }
 </style>

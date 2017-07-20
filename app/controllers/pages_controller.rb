@@ -12,18 +12,24 @@ class PagesController < ApplicationController
       respond_to do |format|
         format.html{  
           if current_user.profile_picture
-            @feed = Post.all
-            @post = Post.new
           else
             current_user.profile_picture = '/default.jpg'
-            @feed = Post.all
-            @post = Post.new
           end
-          @whotofollow = User.first(10)
-        current_user.save!
+           @feed = []
+            follower_id = current_user.active_relationships.pluck(:followee_id)
+            
+            follower_id.each do|follower_id|
+              @feed <<  Post.find_by(user_id:follower_id)
+            end
+          
+          @feed.delete(nil)
+          @feed.sort!{|a,b| b.created_at <=> a.created_at}
+          @post = Post.new
+          
+          current_user.save!
         }
         format.js{
-          @feed = Post.all
+            @feed = current_user.active_relationships.posts
         }
       end
     else
@@ -96,24 +102,32 @@ end
   end
 
   def relation
-    followee_id = params[:followee_id]
-    follow = Relationship.where(followee_id: followee_id , follower_id: current_user.id).first
+    
+    respond_to do|format|
+      format.html{
+        followee_id = params[:followee_id]
+        follow = Relationship.where(followee_id: followee_id , follower_id: current_user.id).first
 
-    unless follow 
-      follow = Relationship.new
-      follow.followee_id = followee_id
-      follow.follower_id = current_user.id
-      follow.save
-    else
-      follow.destroy
+        unless follow 
+          follow = Relationship.new
+          follow.followee_id = followee_id
+          follow.follower_id = current_user.id
+          follow.save!
+        else
+          follow.destroy!
+        end
+        redirect_to request.referrer
+      }
+      format.js{}
     end
-    redirect_to request.referrer
   end
 
   def followers
 
     respond_to do|format|
       format.html{
+            @followers = User.find_by_username(params[:id]).passive_relationships.pluck(:follower_id)
+            @username = params[:id]
             # @feed = []
             # followee_id = User.find_by_username(params[:id]).passive_relationships.pluck(:follower_id)
             # followee_id.each do|followee_id|
@@ -122,6 +136,7 @@ end
             # @feed.sort!{|a,b| b.created_at <=> a.created_at}
             # @username = params[:id]
           }
+          format.js{}
       end
   end
 
@@ -129,8 +144,9 @@ end
    respond_to do|format|
       format.html{
 
-        @followers = User.find_by_username(params[:id]).active_relationships.pluck(:followee_id)
+        @following = User.find_by_username(params[:id]).active_relationships.pluck(:followee_id)
         @username = params[:id]
+        @following.delete(current_user.id)
             # @feed = []
             # follower_id = User.find_by_username(params[:id]).active_relationships.pluck(:followee_id)
             # follower_id.each do|follower_id|
@@ -139,6 +155,8 @@ end
             # @feed.sort!{|a,b| b.created_at <=> a.created_at}
             # @username = params[:id]
         }
+      format.js{}
       end
     end
+
 end

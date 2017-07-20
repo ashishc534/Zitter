@@ -2,20 +2,20 @@
 	<div class="col-xs-3">
 		<div class="panel panel-default">
 			<div class="panel-body" id="profile">
-				<img src="/bg2.jpg" class="img-responsive">
+				<img src="/bg2.jpg" class="img-responsive" style="height: 120px; width: 100%">
 				<span><img src="/uploads/<%=current_user.profile_picture%>" class="profile profile_sketch" >
 				<span class="post-owner"><%=current_user.username%></span>
 				</span>
 				<div id="User_acts">
-				<a href="#" id="noOfposts">Posts
+				<a href="/user/<%=current_user.username%>" id="noOfposts"><span class="user-links">Posts</span>
 					<div id="User_acts_count"><span id="tweets_count" style="margin-top: 0px;"><%=current_user.posts.length%></span></div></a>
 
-				<a href="#" id="noOffollowers">Followers
-				<div id="User_acts_count"><%=Relationship.where(followee_id:current_user.id).count %></div>
+				<a href="/user/<%=current_user.username%>/followers" id="noOffollowers"><span class="user-links">Followers</span>
+				<div id="User_acts_count"><span id="followers_count"><%=current_user.passive_relationships.count%></span></div>
 				</a>
 				
-				<a href="#" id="noOffollowees">Following
-				<div id="User_acts_count"><%= Relationship.where(follower_id:current_user.id).count %></div></a>
+				<a href="/user/<%=current_user.username%>/following" id="noOffollowees"><span class="user-links">Following</span>
+				<div id="User_acts_count"><span id="following_count"><%= current_user.active_relationships.count%></span></div></a>
 				</div>
 			</div>		
 		</div>
@@ -72,7 +72,7 @@
 
 <style>
 	#profile{
-		height: 300px;
+		height: 280px;
 		margin: 0;
 		padding: 0;
 	}
@@ -85,20 +85,35 @@
 	#profile span span{
 		font-size: 120%;
 	}
+	#tweets_count{
+		font-size: 18px;
+		color: #1da1f2;
+		font-weight: bolder;
+	}
+	#followers_count{
+		font-size: 18px;
+		color: #1da1f2;
+		font-weight: bolder;
+	}
+	#following_count{
+		font-size: 18px;
+		color: #1da1f2;
+		font-weight: bolder;
+	}
 	#noOfposts{
-		font-size: 110%;
+		font-size: 15px;
 		font-weight: bold;
 		text-decoration: none;
 		color: black;
 	}
 	#noOffollowers{
-		font-size: 110%;
+		font-size: 15px;
 		font-weight: bold;
 		text-decoration: none;
 		color: black;
 	}
 	#noOffollowees{
-		font-size: 110%;
+		font-size: 15px;
 		font-weight: bold;
 		text-decoration: none;
 		color: black;
@@ -119,13 +134,15 @@
 		margin-top: 10px;
 		display: flex;
 		justify-content: space-around;
-		opacity: 0.7;
 	}
 	#User_acts_count{
 		margin-top: 4px;
 		margin-left: -14px;
 		display: flex;
 		justify-content: space-around;
-		opacity: 0.7;
+	}
+	.user-links{
+		opacity: 0.6;
+		font-size: 13px;
 	}
 </style>

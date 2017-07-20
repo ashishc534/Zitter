@@ -1,8 +1,12 @@
 <div class="row">
-	<% @followers.each do|followers|%>
-		<div class="col-md-3">
-			<img src="/uploads/<%=followers.profile_picture%>" class="profileAvatar-image">
-		</div>
-		
-	<% end %>
+	<div class="col-xs-3"></div>
+	<div class="col-xs-9">
+	
+		<% @followers.each do|followers|%>
+			<%=render '/pages/followers' , followers:followers%>
+		<% end %>
+	</div>
 </div>
+	
+
+

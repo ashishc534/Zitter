@@ -1,0 +1,24 @@
+<div class="col-xs-4">
+	<div class="shadow follower-panel panel panel-default">
+			<div class="profile-short-banner">
+				<img src="/uploads/<%=User.find_by_id(following).profile_picture%>" class="avatar-panel">
+			</div>
+			<% if following != current_user.id %>
+				<form action="/user/pages/relation" method="POST">
+					<input type="hidden" name="followee_id" value="<%=following%>"/>
+        			
+        			<% if Relationship.where(follower_id: current_user.id , followee_id: following).count>0 %>
+						<button class="relation">
+							<span class="relation-text">UnFollow</span>
+						</button>
+					<% else %>
+						<button class="relation">
+							<span class="relation-text">Follow</span>
+						</button>
+					<% end %>
+				</form>
+			<% end %>
+			<div class="avatar-name"><b><%=User.find_by_id(following).username%></b></div>
+	</div>
+</div>
+		

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/user/:id' => 'pages#profile'
   get '/user/:id/following' => 'pages#following'
   get '/user/:id/followers' => 'pages#followers'
+  post '/user/:id/pages/relation' => 'pages#relation'
   get '/explore' => 'pages#explore'
   get '/upload_image' => 'pages#upload_image'
   get '/upload_cover_image' =>'pages#upload_cover_image'

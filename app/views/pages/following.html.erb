@@ -2,63 +2,8 @@
 	<div class="col-xs-3"></div>
 	<div class="col-xs-9">
 	
-		<% @followers.each do|followers|%>
-			<div class="col-xs-4">
-				<div class="follower-panel panel panel-default">
-						<div class="profile-short-banner">
-							<img src="/uploads/<%=User.find_by_id(followers).profile_picture%>" class="avatar-panel">
-						</div>
-							<form action="/user/pages/relation" method="POST">
-								<input type="hidden" name="followee_id" value="<%=User.find_by_username(params[:id]).id %>"/>
-		            			<% if Relationship.where(follower_id: current_user.id , followee_id: followers).count>0 %>
-									<button class="relation">
-										<b style="opacity: 0.7">UnFollow</b>
-									</button>
-								<% else %>
-									<button class="relation">
-										<b style="opacity: 0.7">Follow</b>
-									</button>
-								<% end %>
-							</form>
-
-						<div class="avatar-name"><b><%=User.find_by_id(followers).username%></b></div>
-				</div>
-			</div>
-		
+		<%@following.each do|following|%>
+			<%= render '/pages/following' , following:following %>
 		<% end %>
 	</div>
 </div>
-	
-	<style>
-		.follower-panel{
-			height: 250px;
-			margin-bottom: 20px;
-		}
-		.profile-short-banner{
-			width: 250px;
-			height: 70px;
-			background-color: #1da1f2;
-		}
-		.avatar-panel{
-			width: 90px;
-			height: 90px;
-			border-radius: 50%;
-			position: relative;
-			top: 40px;
-			left: 10px;
-		}
-		.relation{
-			position: relative;
-			right: -160px;
-			top: 10px;
-			background: transparent;
-			border-radius: 50px;
-		}
-		.avatar-name{
-			position: relative;
-			top:35px;
-			left: 10px;
-			font-size: 18px;
-		}
-	</style>
-
