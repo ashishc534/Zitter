@@ -15,15 +15,7 @@ class PagesController < ApplicationController
           else
             current_user.profile_picture = '/default.jpg'
           end
-           @feed = []
-            follower_id = current_user.active_relationships.pluck(:followee_id)
-            
-            follower_id.each do|follower_id|
-              @feed <<  Post.find_by(user_id:follower_id)
-            end
-          
-          @feed.delete(nil)
-          @feed.sort!{|a,b| b.created_at <=> a.created_at}
+           @feed = Post.all
           @post = Post.new
           
           current_user.save!

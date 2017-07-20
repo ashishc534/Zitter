@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   
   has_many :posts, dependent: :destroy 
   has_many :active_relationships,class_name: "Relationship",foreign_key: "follower_id", dependent: :destroy
-   has_many :passive_relationships,class_name: "Relationship",foreign_key: "followee_id", dependent: :destroy
-
+  has_many :passive_relationships,class_name: "Relationship",foreign_key: "followee_id", dependent: :destroy
+  has_many :likes
   validates_length_of :username , :maximum=>15 
 
 end

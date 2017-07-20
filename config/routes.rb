@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :relationships
  
   root 'pages#index'
-
+  post 'toggle' => 'likes#toggle_like'
   get '/home' => 'pages#home'
   get '/search' => 'posts#search'
   post 'user/pages/relation' => 'pages#relation'

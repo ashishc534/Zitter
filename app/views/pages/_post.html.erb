@@ -1,4 +1,4 @@
-<div class="panel panel-default form-panel" id="post-contents">
+<div class="panel panel-default form-panel" id="post-contents">			
   			<div class="panel-body row">
   				<div class="col-sm-1">
   					<img src="/uploads/<%= User.find_by_id(tweet.user_id).profile_picture %> " class="round-image" height="50px" width="50px">
@@ -13,7 +13,15 @@
 					<ul class="post-links">
 						<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
 						<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
-						<li><span class="glyphicon glyphicon-heart g-links" aria-hidden="true"></span></li>
+						<li>
+						<div class="reload">
+						<%=form_tag (toggle_path method:'post',id:'like_form',tweet_id:tweet.id),remote:true do%>
+						<%= link_to tweet.like_string(current_user.id), url_for(controller: 'likes', action: 'toggle_like', tweet_id: tweet.id), method: :post,id: "like_#{tweet.id}" ,remote: true %> , <%= tweet.likes.count %>
+		
+						<% end %>
+						</div>
+						</li>
+
 						<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true">
 						</span></a>
@@ -47,3 +55,6 @@
 		border:1px solid #1da1f2;
 	}
 </style>
+
+<script>
+</script>

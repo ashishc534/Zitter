@@ -1,0 +1,5 @@
+<% if @is_liked %>
+$('#like_<%= @tweet.id%>').html("Unlike");
+<% else %>
+$('#like_<%= @tweet.id%>').html("Like");
+<% end %>
