@@ -4,7 +4,7 @@
 			<div class="panel-body" id="profile">
 				<img src="/bg2.jpg" class="img-responsive" style="height: 120px; width: 100%">
 				<span><img src="/uploads/<%=current_user.profile_picture%>" class="profile profile_sketch" >
-				<span class="post-owner"><%=current_user.username%></span>
+				<span class="post-owner"><a href="/user/<%=current_user.username%>"><%=current_user.username%></a></span>
 				</span>
 				<div id="User_acts">
 				<a href="/user/<%=current_user.username%>" id="noOfposts"><span class="user-links">Posts</span>

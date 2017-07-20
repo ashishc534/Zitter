@@ -1,5 +1,7 @@
 <% if @is_liked %>
-$('#like_<%= @tweet.id%>').html("Unlike");
+		$('#like_<%= @tweet.id%>').hide().html("UnLike").fadeIn();
+	
 <% else %>
-$('#like_<%= @tweet.id%>').html("Like");
+		$('#like_<%= @tweet.id%>').hide().html("Like").fadeIn();
+	
 <% end %>

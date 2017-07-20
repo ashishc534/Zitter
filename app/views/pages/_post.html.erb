@@ -9,20 +9,18 @@
 					<p class="post-content"><%=tweet.content %></p>
 				</div>
 
-				<div class="col-sm-12">
+				<div class="col-sm-12" style="display: flex; justify-content: space-around;">
 					<ul class="post-links">
 						<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
 						<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
+						
 						<li>
-						<div class="reload">
-						<%=form_tag (toggle_path method:'post',id:'like_form',tweet_id:tweet.id),remote:true do%>
-						<%= link_to tweet.like_string(current_user.id), url_for(controller: 'likes', action: 'toggle_like', tweet_id: tweet.id), method: :post,id: "like_#{tweet.id}" ,remote: true %> , <%= tweet.likes.count %>
-		
-						<% end %>
-						</div>
+							<%=form_tag (toggle_path method:'post',tweet_id:tweet.id),remote:true do%>
+								<p class="like_link"><%= link_to tweet.like_string(current_user.id), url_for(controller: 'likes', action: 'toggle_like', tweet_id: tweet.id), method: :post,id: "like_#{tweet.id}",remote: true %></p>	
+							<% end %>
 						</li>
 
-						<li class="dropdown">
+						<li class="dropdown" style="margin-left: 50px;">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true">
 						</span></a>
 						<ul class="dropdown-menu">
@@ -53,6 +51,10 @@
 	}
 	.round-image{
 		border:1px solid #1da1f2;
+	}
+	.like_link a{
+		text-decoration: none!important;
+		color: grey;
 	}
 </style>
 
