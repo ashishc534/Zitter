@@ -48,7 +48,7 @@
 					<div class="user_data"><%=User.find_by_username(params[:id]).passive_relationships.count%></div>
 				</a>
 				<a href="#3">Likes
-					<div class="user_data">20</div>
+					<div class="user_data"><%=User.find_by_username(params[:id]).likes.count%></div>
 				</a>
 			</div>
 			<% if params[:id]==current_user.username %>

@@ -16,7 +16,7 @@
 						
 						<li>
 							<%=form_tag (toggle_path method:'post',tweet_id:tweet.id),remote:true do%>
-								<p class="like_link"><%= link_to tweet.like_string(current_user.id), url_for(controller: 'likes', action: 'toggle_like', tweet_id: tweet.id), method: :post,id: "like_#{tweet.id}",remote: true %></p>	
+								<a id="like_<%=tweet.id%>" data-remote="true" rel="nofollow" data-method="post" href="/toggle?tweet_id=<%=tweet.id%>" class="<%= tweet.like_string(current_user.id)%>"><span class="glyphicon glyphicon-heart"></span></a>
 							<% end %>
 						</li>
 
@@ -55,6 +55,12 @@
 	.like_link a{
 		text-decoration: none!important;
 		color: grey;
+	}
+	.Like{
+		color:blue;
+	}
+	.UnLike{
+		color:red;
 	}
 </style>
 

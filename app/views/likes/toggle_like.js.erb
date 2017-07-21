@@ -1,7 +1,13 @@
 <% if @is_liked %>
-		$('#like_<%= @tweet.id%>').hide().html("UnLike").fadeIn();
-	
+	{	
+		noty({text: 'Tweet Was Liked',type: 'information',
+	    timeout: 2000});
+			$('#like_<%= @tweet.id%>').hide().css("color","red").fadeIn();
+	}
 <% else %>
-		$('#like_<%= @tweet.id%>').hide().html("Like").fadeIn();
-	
+		{
+			noty({text: 'Tweet Was UnLiked',type: 'information',
+			    timeout: 2000});
+				$('#like_<%= @tweet.id%>').hide().css("color","blue").fadeIn();
+		}
 <% end %>
