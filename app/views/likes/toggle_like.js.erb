@@ -1,13 +1,15 @@
+$("#user_likes").text("<%=User.find_by_id(@like_id).likes.count%>");
 <% if @is_liked %>
 	{	
 		noty({text: 'Tweet Was Liked',type: 'information',
 	    timeout: 2000});
-			$('#like_<%= @tweet.id%>').hide().css("color","red").fadeIn();
+			$('#like_<%= @tweet.id%>').hide().css({"color":"red","opacity":"0.8"}).fadeIn();
 	}
 <% else %>
 		{
 			noty({text: 'Tweet Was UnLiked',type: 'information',
 			    timeout: 2000});
-				$('#like_<%= @tweet.id%>').hide().css("color","blue").fadeIn();
+			$('#like_<%= @tweet.id%>').hide().css({"color":"grey","opacity":"0.6"}).fadeIn();
+			
 		}
 <% end %>

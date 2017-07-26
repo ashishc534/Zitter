@@ -1,7 +1,4 @@
-<div class="user-avatar">
-	<img class="round" src="/uploads/<%=User.find_by_username(@username).profile_picture%>">
-</div>
-	<div class="row">
+<div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-xs-6" style="margin-top: 20px;">
 		<% @feed.each do |tweet| %>
@@ -17,24 +14,4 @@
 	  				</div>
 	  			</div>		
 		</div>
-	</div>
-		<div class="col-md-3">
-			<%=render 'pages/whotofollow' , whotofollow:@whotofollow%>
-		</div>
 </div>
-
-<style type="text/css">
-	.whotofollow{
-		margin-top: -10px;
-	}
-	.wtfrelation{
-		right:0px;
-		outline: none;
-	}
-	.wtfimage{
-		height: 50px;
-		width: 50px;
-		border:1px solid <%=current_user.theme%>;
-		margin-top: 10px;
-	}
-</style>

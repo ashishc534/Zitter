@@ -1,5 +1,5 @@
 <a name="top"></a>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -33,7 +33,7 @@
               <li role="separator" class="divider"></li>
               <li><%= link_to('Add Profile Photo',upload_image_path)%></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to('Add Cover Photo',upload_cover_image_path)%></li>
+              <li><%= link_to('Change Theme',theme_path)%></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to('Log Out',destroy_user_session_path,:method => :delete)%></li>
             </ul>
@@ -61,14 +61,14 @@
 
 <style>
   .active span{
-    color: #1da1f2;
+    color: <%=current_user.theme%>;
   }
   .dropdown-menu li a:hover{
-    color: #1da1f2;
+    color: <%=current_user.theme%>;
   }
   .nav-image{
     margin-top: 4px;
-    border:1px solid #1da1f2;
+    border:1px solid <%=current_user.theme%>;
     border-radius: 5px;
   }
   .searchbar{
@@ -77,11 +77,11 @@
   .search-button{
     margin-top: 7px;
     margin-left: 5px;
-    background-color: #1da1f2;
     width: 80px;
     height: 30px;
-    border:1px solid #1da1f2;
+    border:1px solid <%=current_user.theme%>;
     border-radius: 30px;
+    outline: none;
   }
   .search-text{
     color:white;
@@ -92,4 +92,8 @@
   .search-button:hover .search-text{
     font-weight:bolder;
   }
+  .dropdown-toggle:active, .open .dropdown-toggle {
+        background:#FFF !important; 
+        color:#000 !important;
+    }
 </style>

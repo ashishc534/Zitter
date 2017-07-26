@@ -15,6 +15,9 @@ class PagesController < ApplicationController
           else
             current_user.profile_picture = '/default.jpg'
           end
+          if !current_user.theme
+            current_user.theme = "rgb(29, 161, 242)"
+          end
            @feed = Post.all
           @post = Post.new
           
@@ -39,7 +42,7 @@ class PagesController < ApplicationController
       format.html{
       	if (User.find_by_username(params[:id]))
       		@username = params[:id]
-          @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
+          @feed = User.find_by_username(params[:id]).posts
           @whotofollow = User.first(10)
           
       	else
@@ -47,8 +50,7 @@ class PagesController < ApplicationController
       	end
       }
       format.js{
-        @feed = Post.all.where(user_id:User.find_by_username(params[:id]).id)
-        @feed = Post.all.where(user_id:User.find_by_username(params[:search]).id)
+        @feed = User.find_by_username(params[:id]).posts
       }
   end
 end
@@ -151,4 +153,30 @@ end
       end
     end
 
+    def likes
+      respond_to do|format|
+        format.html{
+          @username = params[:id]
+          @likes = User.find_by_username(params[:id]).likes
+          @feed = []
+
+          @likes.each do|like|
+            post = Post.find_by_id(like.post_id)
+            @feed<<post
+          end
+
+          @feed
+        }
+      end
+    end
+
+    def theme
+    end
+
+    def theme_submit
+      colour = params[:colour]
+      current_user.theme = colour
+      current_user.save!
+      redirect_to '/'
+    end
 end

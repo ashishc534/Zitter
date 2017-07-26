@@ -18,6 +18,10 @@ body{
 	background-color: #e6ecf0;
 	min-width:1000px;
 }
+
+a:hover	{
+	text-decoration:none;
+}
 .navbar{
 	background-color:white;
 }
@@ -49,14 +53,25 @@ body{
 }
 .g-links{
 	opacity:0.4;
-	font-size:120%;
+	font-size:140%;
 	margin-right:75px;
+}
+.g-links-heart{
+	font-size:140%;
+	margin-right:75px;
+}
+.Like{
+	opacity: 0.6;
+	color:grey;
+}
+.UnLike{
+	opacity:0.8;
+	color:red;
 }
 .round-image{
 	border-radius:50px;
 }
 .About a{
-		color: black;
 		opacity: 0.5;
 		font-size: 75%;
 		text-decoration: none;
@@ -100,9 +115,9 @@ body{
 	margin-left:3px;
 }
 .user-avatar{
-		position: absolute;
-		top: 170px;
-		left: 40px;
+	position: absolute;
+	top: 170px;
+	left: 40px;
 }
 .round{
 	width: 200px;
@@ -147,13 +162,12 @@ body{
 	font-size: 18px;
 }
 .follower-panel{
-			height: 250px;
-			margin-bottom: 20px;
-		}
+	height: 250px;
+	margin-bottom: 20px;
+}
 .profile-short-banner{
 	width: 250px;
 	height: 70px;
-	background-color: #1da1f2;
 }
 .avatar-panel{
 	width: 90px;
@@ -178,12 +192,8 @@ body{
 	font-size: 18px;
 }
 .relation-text{
-	color: #1da1f2;
 	font-size: 12px;
 	font-weight: bolder;
-}
-.relation:hover{
-	background-color: #1da1f2;
 }
 .relation:hover .relation-text{
 	color:white;
@@ -194,16 +204,12 @@ body{
 		top: 15px;
 		background: transparent;
 		border-radius: 50px;
-		border:2px solid #1da1f2;
 		height: 40px;
 		width: 110px;
 		outline:none;
 }
-.mapping:hover{
-	background-color: #1da1f2;
-}
+
 .mapping-text{
-	color: #1da1f2;
 	font-weight: bolder;
 }
 .mapping:hover .mapping-text{
@@ -213,9 +219,7 @@ body{
 		position: relative;
 		right: 100px;
 		top: 15px;
-		background-color: #1da1f2;
 		border-radius: 50px;
-		border:2px solid #1da1f2;
 		height: 40px;
 		width: 110px;
 		outline: none;
@@ -232,7 +236,6 @@ body{
 	width: 100%;
 	overflow: hidden;
 	margin-top: -21px;
-	background-color: #1da1f2;
 	border-bottom:1px solid blue;
 }
 .profile-banner-bottom{
@@ -258,7 +261,6 @@ body{
 	color: grey;
 }
 .links a div:hover{
-	color: #1da1f2;
 	cursor: pointer;
 }
 .wrapper{
@@ -270,7 +272,6 @@ body{
 }
 .edit{
 	margin-top: 15px;
-	border:1px solid #1da1f2;
 	position: relative;
 	right: 70px;
 	border-radius: 50px;
@@ -278,9 +279,6 @@ body{
 	height: 40px;
 	background-color: #fff;
 	outline: none;
-}
-.edit:hover{
-	background-color:#1da1f2; 
 }
 
 .edit a{
@@ -295,11 +293,7 @@ body{
 	margin-left: 10px;
 }
 .onpage{
-	border-bottom: 3px solid #1da1f2;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-bottom:2px;
-}
-.onpage .user_data{
-	color: #1da1f2;
 }

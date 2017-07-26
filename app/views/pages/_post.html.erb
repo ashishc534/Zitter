@@ -9,18 +9,18 @@
 					<p class="post-content"><%=tweet.content %></p>
 				</div>
 
-				<div class="col-sm-12" style="display: flex; justify-content: space-around;">
+				<div class="col-sm-12" style="display: flex; justify-content: space-around; margin-top: 20px;">
 					<ul class="post-links">
 						<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
 						<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
 						
 						<li>
 							<%=form_tag (toggle_path method:'post',tweet_id:tweet.id),remote:true do%>
-								<a id="like_<%=tweet.id%>" data-remote="true" rel="nofollow" data-method="post" href="/toggle?tweet_id=<%=tweet.id%>" class="<%= tweet.like_string(current_user.id)%>"><span class="glyphicon glyphicon-heart"></span></a>
+								<a id="like_<%=tweet.id%>" data-remote="true" rel="nofollow" data-method="post" href="/toggle?tweet_id=<%=tweet.id%>" class="<%= tweet.like_string(current_user.id)%>"><span class="glyphicon glyphicon-heart g-links-heart"></span></a>
 							<% end %>
 						</li>
 
-						<li class="dropdown" style="margin-left: 50px;">
+						<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true">
 						</span></a>
 						<ul class="dropdown-menu">
@@ -32,7 +32,7 @@
 			            </ul>
 			            </li>
 
-						<li><%= link_to 'Comments'%></li>
+						<li><%= link_to 'Comments', new_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
 						</ul>
 					</p>
 				</div>
@@ -50,17 +50,14 @@
 		box-shadow: 0px 1px lightgrey;
 	}
 	.round-image{
-		border:1px solid #1da1f2;
+		border:1px solid <%=current_user.theme%>;
 	}
 	.like_link a{
 		text-decoration: none!important;
 		color: grey;
 	}
-	.Like{
-		color:blue;
-	}
-	.UnLike{
-		color:red;
+	.Like:hover{
+		color: red;
 	}
 </style>
 

@@ -2,7 +2,7 @@
 	<div class="col-xs-3">
 		<div class="panel panel-default">
 			<div class="panel-body" id="profile">
-				<img src="/bg2.jpg" class="img-responsive" style="height: 120px; width: 100%">
+				<div style="width: 261px; height: 130px; background-color: <%=current_user.theme%>;"></div>
 				<span><img src="/uploads/<%=current_user.profile_picture%>" class="profile profile_sketch" >
 				<span class="post-owner"><a href="/user/<%=current_user.username%>"><%=current_user.username%></a></span>
 				</span>
@@ -87,17 +87,17 @@
 	}
 	#tweets_count{
 		font-size: 18px;
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		font-weight: bolder;
 	}
 	#followers_count{
 		font-size: 18px;
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		font-weight: bolder;
 	}
 	#following_count{
 		font-size: 18px;
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		font-weight: bolder;
 	}
 	#noOfposts{
@@ -119,15 +119,15 @@
 		color: black;
 	}
 	#noOfposts:hover{
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		opacity: 1.0;
 	}
 	#noOffollowees:hover{
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		opacity: 1.0;
 	}
 	#noOffollowers:hover{
-		color: #1da1f2;
+		color: <%=current_user.theme%>;
 		opacity: 1.0;
 	}
 	#User_acts{
