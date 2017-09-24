@@ -18,9 +18,14 @@ class PagesController < ApplicationController
           if !current_user.theme
             current_user.theme = "rgb(29, 161, 242)"
           end
-           @feed = Post.all
-          @post = Post.new
-          
+          @feed = Post.all
+          @post = Post.new 
+          @trending = []
+          @feed.each do|post|
+            if post.likes.count > 1
+              @trending << post
+            end
+          end
           current_user.save!
         }
         format.js{
@@ -79,20 +84,6 @@ end
 
   def upload_cover_image
     
-  end
-
-  def upload_cover_image_submit
-    uploaded_file = params[:image]
-    filename = SecureRandom.hex + "." +uploaded_file.original_filename.split('.')[1]
-    filepath = Dir.pwd + "/public/uploads/" + filename
-    
-    File.open(filepath,'wb') do |file|
-      file.write(uploaded_file.read())
-  end
-
-  current_user.cover_image = filename
-  current_user.save!
-     redirect_to home_path
   end
 
   def relation

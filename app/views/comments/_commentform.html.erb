@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <form action="/new" method="POST">
+      <input type="hidden" name="tweet_id" value="<%=tweet.id%>">
+      <input type="hidden" name="user_id" value="<%=current_user.id%>">
+      <textarea class="form-control" rows="5" id="comment" name="content" autofocus="true"></textarea>
+      <br>
+      <div class="row">
+      <div class="col-md-3">
+        <button class="commentbtn"><span>Submit</span></button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+
+<style type="text/css">
+  .commentbtn{
+    background: transparent;
+    background-color: <%=current_user.theme%>;
+    width: 120px;
+    height: 40px;
+    border:1px solid <%=current_user.theme%>;
+    border-radius: 50px;
+    outline: none;
+  }
+  .commentbtn span{
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+  }
+  .commentbtn:hover{
+    border:1px solid white;
+    transform: rotate(360deg);
+  }
+  #comment{
+    box-shadow: 2px 2px grey;
+  }
+</style>
+<!-- 
+<script>
+  
+  var submit_button = document.getElementsByClassName('commentbtn')[0];
+  var ele = $('#comment.form-control');
+    if(ele.val().length ==0)
+      {
+        submit_button.disabled = true;
+        $('.commentbtn').attr("transition","transform");
+      }
+    
+    else
+  submit_button.disabled = false;
+
+</script> -->

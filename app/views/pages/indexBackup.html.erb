@@ -1,0 +1,113 @@
+<div class="container-index row fade">
+	<div class="col-md-9 col-md-offset-2 ">
+		<h1>Welcome to ZITTER.</h1>
+		<p class="text">
+			Connect With Your Buddies. Chat with Your Loved Ones.<br> 
+			Share Your Adventures. Have Fun! <br>
+			Just Like a Blog, But With Less Characters!
+		</p>
+	</div>
+</div>
+<div class="row fade">
+	<a href="/users/sign_in"><button class="log-in"><b>Sign in</b></button></a>
+	<a href="/users/sign_up"><button class="sign-up"><b>Sign Up</b></button></a>
+</div>
+	
+	<div class="col-sm-12 fade">
+		<p class="footer-links">About  Help  Blog  Status  Jobs  Terms  Privacy  Cookies  Ads info  Brand  Advertise  Business  Media  Developers  Directory  @  2017  Zitter</p>
+	</div>
+</div>
+<% if !user_signed_in? %>
+	<style>
+		body{
+			background:linear-gradient(rgba(0,0,0,0.7),
+			rgba(0,0,0,0.7)),url('/bg.jpg') no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			overflow: hidden;
+		}
+
+		h1{
+			color: white;
+			font-weight: bold;
+		}
+		.container-index{
+			margin-right: 15%;
+			margin-left: 15%;
+		}
+		.text{
+			color: white;
+			font-weight: 300;
+			font-size: 150%;
+		}
+		.footer-links{
+			text-align: center;
+			color: white;
+			margin-top: 10%;
+			font-size: 75%;
+		}
+		
+		.log-in{
+			margin-top: 50px;
+			background:transparent;
+			width: 40%;
+			height: 150px;
+			border: 2px solid lightblue;
+			border-radius: 40px; 
+			font-size: 100px;
+			color: white;
+			
+		}
+		.log-in:hover{
+			background-color: rgba(0,0,0,0.5);
+			color:white;
+		}
+		.sign-up{
+			margin-top: 50px;
+			background:transparent;
+			width: 40%;
+			height: 150px;
+			border: 2px solid lightblue;
+			border-radius: 40px; 
+			font-size: 100px;
+			color: white;
+			float: right;
+		}
+		.sign-up:hover{
+			background-color: rgba(0,0,0,0.5);
+			color:white;
+		}
+		button{
+			outline: none;
+		}
+		.fade{
+    animation:fadein 1s;
+  animation-timing-function:linear;
+  animation-delay:0.1s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: 1;
+  }
+  @keyframes fadein{
+    from{
+      opacity: 0.3;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+  body{
+    background:linear-gradient(rgba(0,0,0,0.7),
+      rgba(0,0,0,0.7)),url('/bg5.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      overflow: hidden;
+  }
+	</style>
+	
+<% else %>
+	<script>document.location = "/home" </script> 
+<% end %> 

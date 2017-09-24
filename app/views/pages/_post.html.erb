@@ -11,7 +11,8 @@
 
 				<div class="col-sm-12" style="display: flex; justify-content: space-around; margin-top: 20px;">
 					<ul class="post-links">
-						<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
+						<a href="/comments?tweet_id=<%=tweet.id%>"><li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li></a>
+
 						<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
 						
 						<li>
@@ -32,7 +33,6 @@
 			            </ul>
 			            </li>
 
-						<li><%= link_to 'Comments', new_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
 						</ul>
 					</p>
 				</div>

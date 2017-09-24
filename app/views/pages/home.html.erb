@@ -21,8 +21,11 @@
 		</div>
 		
 		<div class="panel panel-default">
-  			<div class="panel-body">
+  			<div class="panel-body trending">
 				<p>Trends</p>
+				<%@trending.each do|trending|%>
+					<%=trending.content%><br>
+					<% end %>
 			</div>
 		</div>
 	</div>
@@ -144,5 +147,8 @@
 	.user-links{
 		opacity: 0.6;
 		font-size: 13px;
+	}
+	.trending{
+		word-wrap: break-word;
 	}
 </style>

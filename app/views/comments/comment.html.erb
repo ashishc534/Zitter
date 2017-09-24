@@ -1,0 +1,88 @@
+<div class="row tweets" style="margin-top: 20px;">
+	
+	<div class="col-md-12">
+		<div class="panel panel-primary form-panel" id="post-contents">			
+			<div class="panel-body row">
+				<div class="col-sm-1">
+					<img src="/uploads/<%= User.find_by_id(@tweet.user_id).profile_picture %> " class="round-image" height="50px" width="50px"></img>
+				</div>
+				<div class="col-sm-11">
+					<p class="post-title"><span class="post-owner"><a href="/user/<%=User.find(@tweet.user_id).username%>"><%=User.find(@tweet.user_id).username%></a></span><span class="post-creation"> - <%=time_ago_in_words(@tweet.created_at)%> ago</span></p>
+				<p class="post-content"><%=@tweet.content %></p>
+			</div>
+			<div class="row">
+			<div class="col-md-12" style="display: flex; justify-content: space-around; margin-top: 20px;">
+				<ul class="post-links">
+					<li><span class="glyphicon glyphicon-comment g-links" aria-hidden="true"></span></li>
+					<li><span class="glyphicon glyphicon-retweet g-links" aria-hidden="true"></span></li>
+					
+					<li>
+						<%=form_tag (toggle_path method:'post',tweet_id:@tweet.id),remote:true do%>
+							<a id="like_<%=@tweet.id%>" data-remote="true" rel="nofollow" data-method="post" href="/toggle?tweet_id=<%=@tweet.id%>" class="<%= @tweet.like_string(current_user.id)%>"><span class="glyphicon glyphicon-heart g-links-heart"></span></a>
+						<% end %>
+					</li>
+
+					<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-option-horizontal g-links" aria-hidden="true">
+					</span></a>
+					<ul class="dropdown-menu">
+						<% if @tweet.user_id == current_user.id%>
+		              		<li>Delete</li>
+		              	<% else %>
+		              		<li>Hide</li>
+		              	<% end %>
+		            </ul>
+		            </li>
+		            </ul>
+					</p>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br>
+<div class="row">
+	<div class="col-md-1"></div>
+	<% if @comments.size > 0 %>
+		<div class="col-md-6">
+			<%=render '/comments/allcomments',comments:@comments %>
+		</div>
+	<% else %>
+		<div class="col-md-6">
+			<em style="opacity: 0.7">START THE DISCUSSION..</em>
+		</div>
+	<% end %>
+	
+	<div class="col-md-5" id="tweets">
+		<%= render '/comments/commentform',tweet:@tweet %>	
+	</div>
+</div>
+
+<style>
+	.post-links{
+		display: flex;
+	}
+	.post-links li{
+		list-style: none;
+	}
+	.form-panel{
+		box-shadow: 0px 1px lightgrey;
+	}
+	.round-image{
+		border:1px solid <%=current_user.theme%>;
+	}
+	.like_link a{
+		text-decoration: none!important;
+		color: grey;
+	}
+	.Like:hover{
+		color: red;
+	}
+	#tweets{
+		position: fixed;
+		right: 10px;
+		top:300px;
+	}
+</style>
+

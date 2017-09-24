@@ -1,0 +1,16 @@
+<%@comments.each do|comment|%>
+	<div class="panel panel-default form-panel" id="post-contents">			
+			<div class="panel-body row">
+				<div class="col-sm-1">
+					<img src="/uploads/<%= User.find_by_id(comment.user_id).profile_picture %> " class="round-image" height="50px" width="50px">
+					</img>
+				</div>
+				<div class="col-sm-11">
+					<p class="post-title"><span class="post-owner"><a href="/user/<%=User.find(comment.user_id).username%>"><%=User.find(comment.user_id).username%></a></span><span class="post-creation"> - <%=time_ago_in_words(comment.created_at)%> ago</span></p>
+				<p class="post-content"><%=comment.content %></p>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+		
