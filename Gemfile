@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
+ruby "2.3.1"
 #for Twitter UI components navbar
 gem 'bootstrap-sass', '~> 3.3.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-gem 'sqlite3', group: :development # Added development group.
-  # gem 'pg', group: :production # Added postgres and made it production only.
-  gem 'rails_12factor'
+#gem 'sqlite3', group: :development # Added development group.
+
+# Heroku.
+gem 'pg'
+gem 'rails_12factor',group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
