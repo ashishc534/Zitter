@@ -1,6 +1,13 @@
 $('#tweets').hide().fadeIn().prepend("<%= escape_javascript(render '/pages/post' ,tweet: @post) %>");
+
 $('#post_content').val("");
 $('#content_size').text("140 characters..");
 $('#tweets_count').text("<%=current_user.posts.length%>");
+
+<% if Post.count === 0 %>
+noty({text: 'Tweet Was Successfully Created! Please Reload The page to see Your First Tweet!',type: 'success',
+    timeout: 2000});
+<% else %>
 noty({text: 'Tweet Was Successfully Created!',type: 'success',
     timeout: 2000});
+<% end %>

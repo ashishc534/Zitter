@@ -20,13 +20,16 @@
 			</div>		
 		</div>
 		
-		<div class="panel panel-default">
-  			<div class="panel-body trending">
-				<p>Trends</p>
-				<%@trending.each do|trending|%>
-					<%=trending.content%><br>
-					<% end %>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<center><b>Trending</b></center>
 			</div>
+			<div class="panel-body trending">
+				<%@trending.each do|trending|%>
+					<%= render 'trends',trending: trending %>
+				<% end %>
+			</div>
+  			
 		</div>
 	</div>
 	<div class="col-xs-6" style="margin-top: 20px;">
@@ -37,7 +40,7 @@
 				</div>
 			<% end %>
 		
-		<div class="panel panel-default form-panel">
+		<div class="panel panel-default form-panel backToTop">
 	  			<div class="panel-body row">
 	  				<div class="col-sm-12">
 	  					<center><img src="/image.jpg" height="25px" width="25px"><br><a href="#top"><p style="opacity: 0.7">Back to Top <span class="glyphicon glyphicon-arrow-up"></span></p></a></center>

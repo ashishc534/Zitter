@@ -10,6 +10,6 @@ $("#user_likes").text("<%=User.find_by_id(@like_id).likes.count%>");
 			noty({text: 'Tweet Was UnLiked',type: 'information',
 			    timeout: 2000});
 			$('#like_<%= @tweet.id%>').hide().css({"color":"grey","opacity":"0.6"}).fadeIn();
-			
 		}
+
 <% end %>

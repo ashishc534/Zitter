@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
-  def index
+  # def index
     # if !user_session
     #   redirect_to root_path
     # else
     # end
-  end
+  # end
   
   def home
 
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
           @whotofollow = User.first(10)
           
       	else
-      		redirect_to root_path, :notice=> "Oh_Crap!! User Not found"
+      		redirect_to root_path, :notice=> "User Not found"
       	end
       }
       format.js{
@@ -169,5 +169,8 @@ end
       current_user.theme = colour
       current_user.save!
       redirect_to '/'
+    end
+
+    def developer
     end
 end
