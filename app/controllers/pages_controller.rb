@@ -13,7 +13,7 @@ class PagesController < ApplicationController
         format.html{  
           if current_user.profile_picture
           else
-            current_user.profile_picture = '/default.jpg'
+            current_user.profile_picture = '/image.jpg'
           end
           if !current_user.theme
             current_user.theme = "rgb(29, 161, 242)"
@@ -22,7 +22,7 @@ class PagesController < ApplicationController
           @post = Post.new 
           @trending = []
           @feed.each do|post|
-            if post.likes.count > 1
+            if post.likes.count >= 1
               @trending << post
             end
           end
