@@ -11,5 +11,4 @@ $("#user_likes").text("<%=User.find_by_id(@like_id).likes.count%>");
 			    timeout: 2000});
 			$('#like_<%= @tweet.id%>').hide().css({"color":"grey","opacity":"0.6"}).fadeIn();
 		}
-		$('#trending_likes_count').text("<%=Post.find_by_id(@like_id).likes.count%>")
 <% end %>
